@@ -6,3 +6,5 @@ setwd("~/Building_IBMs_demo/")
 source("IBM_SourceFunctions.R")
 
 # call the simulation with default parameters:
+DEBUG <<- TRUE # invoke debugging mode (verbose prints)
+main()

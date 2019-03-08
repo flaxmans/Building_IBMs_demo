@@ -1,17 +1,17 @@
 ####################################################################
-## Demonstration of buliding individual based models in R ##
-## This file intended to be sourced by a script ##
+## --- Demonstration of buliding individual based models in R --- ##
+## ------- This file intended to be sourced by a script --------- ##
 ####################################################################
 
-## ------------------ main function to call simulation: --------------------- ## 
+## ------------------ main function to call simulation: -------------------- ##
 main <- function( parameterList = NULL ){
   
   # first: get parameter values
   # see README for expected format of parameter list, or look at 
   # getDefaultParamters() below
   if ( is.null(parameterList) ) {
-    parameterList <- getDefaultParamters()
     cat('\nNo parameterList specified. Using defaults ... \n\n')
+    parameterList <- getDefaultParameters()
   }
   
   # second: initialize/preallocate necessary data structures/objects
@@ -33,14 +33,17 @@ main <- function( parameterList = NULL ){
       dataRecording()
     }
   }
-  
+
   # return data or and/or write it to files
   # choose what you really need to return
-  
+  writeFinalDataToFiles( parameterList ) 
+  return( "Simulation finished with no fatal errors." )
 }
 
-## ---------------------------- Functions called by main() -------------------------- ##
-## Listed below  in alphabetical order ##
+###############################################################################
+## ---------------------- Functions called by main() ----------------------- ##
+## ------------------- Listed below in alphabetical order -------------------##
+###############################################################################
 
 
 ## ---------- calculateSummaryMetrics() ----------------- ##
@@ -66,9 +69,20 @@ getDefaultParameters <- function(){
   numDemes <- 2
   # migration rate:
   migRate <- 0.05
+  # period of data recording (integer >= 1):
+  recordingFrequency <- 1
+  
+  
+  parameterList <- list("generations" = generations, "popSize" = popSize, 
+                        "numDemes" = numDemes, "migRate" = migRate,
+                        "recordingFrequency" = recordingFrequency)
+  if ( DEBUG ) {
+    cat("\nParameter list:\n")
+    show(parameterList)
+  }
   
   # return params as list:
-  return( list(generations, popSize, numDemes, migRate) )
+  return( parameterList )
 }
 
 
@@ -89,4 +103,9 @@ reproduction <- function(){
   
 }
 
+
+## ---------- writeFinalDataToFiles() ----------------- ##
+writeFinalDataToFiles <- function( parameterList ){
+  
+}
 
