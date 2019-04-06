@@ -8,7 +8,9 @@ This repository is meant to serve as a starting point for a demonstration/worksh
 * SimulationScript.R: a script that calls the functions in the previous file to create one instance of a simulation run.
 
 ## Notes for users
-* SimulationScript.R contains the line `setwd("~/Building_IBMs_demo/")`.  Users should re-write this to make sense for their own path.
+* SimulationScript.R contains the line `setwd("~/Building_IBMs_demo/")`.  Users should re-write this to make sense for their own path.  
+* IBM_SourceFunctions.R is meant to be a mostly empty shell of a program; a blank slate from which one could start to build the model described below.  However, it is executable; it just doesn't do anything beyond intializing parameter values at this point.  Again, this is because this repository is for demonstration purposes.
+
 
 ## The general setup: an example of building a model of neutral evolution
 Suppose we wanted to build a population genetic model of two populations (demes) connected by migration.  For the sake of simplicity, we will ignore selection, and assume that the evolutionary dynamics are governed by stochastic processes: migration, drift, and recombination.  
