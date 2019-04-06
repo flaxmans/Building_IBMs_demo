@@ -3,14 +3,20 @@
 ## ------- This file intended to be sourced by a script --------- ##
 ####################################################################
 
+
 ## ------------------ main function to call simulation: -------------------- ##
-main <- function( parameterList = NULL ){
+main <- function( parameterList = NULL, verbose = FALSE, debug = FALSE ){
+  
+  VERBOSE <<- verbose
+  DEBUG <<- debug
   
   # first: get parameter values
   # see README for expected format of parameter list, or look at 
   # getDefaultParamters() below
   if ( is.null(parameterList) ) {
-    cat('\nNo parameterList specified. Using defaults ... \n\n')
+    if ( VERBOSE ) {
+      cat('\nNo parameterList specified. Using defaults ... \n\n')
+    }
     parameterList <- getDefaultParameters()
   }
   
@@ -37,7 +43,9 @@ main <- function( parameterList = NULL ){
   # return data or and/or write it to files
   # choose what you really need to return
   writeFinalDataToFiles( parameterList ) 
-  return( "Simulation finished with no fatal errors." )
+  if ( VERBOSE ) {
+    return( "Simulation finished with no fatal errors." )
+  }
 }
 
 ###############################################################################
@@ -66,7 +74,7 @@ getDefaultParameters <- function(){
   # total population size:
   popSize <- 200
   # number of patches/demes:
-  numDemes <- 2
+  numDemes <- 10
   # migration rate:
   migRate <- 0.05
   # period of data recording (integer >= 1):
