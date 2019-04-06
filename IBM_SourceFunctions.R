@@ -7,8 +7,8 @@
 ## ------------------ main function to call simulation: -------------------- ##
 main <- function( parameterList = NULL, verbose = FALSE, debug = FALSE ){
   
-  VERBOSE <<- verbose
-  DEBUG <<- debug
+  VERBOSE <<- verbose  # logical for prints to screen about status 
+  DEBUG <<- debug # logical for specific prints and to screen and tests useful for debugging
   
   # first: get parameter values
   # see README for expected format of parameter list, or look at 
